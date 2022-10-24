@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import InputMask from "react-input-mask";
 import {
   Container,
@@ -14,7 +14,23 @@ import {
 } from "@chakra-ui/react";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
 
-const Tab = () => {
+interface TabTypes {
+  personal: {
+    firstName: string;
+    lastName: string;
+    subtitle: string;
+    address1: string;
+    address2: string;
+    city: string;
+    pinCode: string;
+    phoneNumber: string;
+    emailAddress: string;
+    website: string;
+  };
+  onChange: ChangeEventHandler<HTMLInputElement>;
+}
+
+const Tab = ({ personal, onChange }: TabTypes) => {
   return (
     <Container w="full" textTransform="uppercase" color="#718096" fontSize="sm">
       <Heading
@@ -30,47 +46,111 @@ const Tab = () => {
       <Flex>
         <Box>
           <Text>First Name</Text>
-          <Input type="text" variant="filled" w="130px" />
+          <Input
+            type="text"
+            variant="filled"
+            w="130px"
+            name="firstName"
+            value={personal.firstName}
+            onChange={onChange}
+          />
         </Box>
         <Spacer mx="10px" />
         <Box>
           <Text>Last Name</Text>
-          <Input type="text" variant="filled" w="130px" />
+          <Input
+            type="text"
+            variant="filled"
+            w="130px"
+            name="lastName"
+            value={personal.lastName}
+            onChange={onChange}
+          />
         </Box>
       </Flex>
       <Box mt="3">
         <Text>Subtitle</Text>
-        <Input type="text" variant="filled" w="280px" />
+        <Input
+          type="text"
+          variant="filled"
+          w="280px"
+          name="subtitle"
+          value={personal.subtitle}
+          onChange={onChange}
+        />
       </Box>
       <Box mt="3">
         <Text>Address line 1</Text>
-        <Input type="text" variant="filled" w="280px" />
+        <Input
+          type="text"
+          variant="filled"
+          w="280px"
+          name="address1"
+          value={personal.address1}
+          onChange={onChange}
+        />
       </Box>
       <Box mt="3">
         <Text>Address line 2</Text>
-        <Input type="text" variant="filled" w="280px" />
+        <Input
+          type="text"
+          variant="filled"
+          w="280px"
+          name="address2"
+          value={personal.address2}
+          onChange={onChange}
+        />
       </Box>
       <Flex my="3">
         <Box>
           <Text>City</Text>
-          <Input type="text" variant="filled" w="130px" />
+          <Input
+            type="text"
+            variant="filled"
+            w="130px"
+            name="city"
+            value={personal.city}
+            onChange={onChange}
+          />
         </Box>
         <Spacer mx="10px" />
         <Box>
           <Text>Pin code</Text>
-          <Input type="text" variant="filled" w="130px" />
+          <Input
+            type="text"
+            variant="filled"
+            w="130px"
+            name="pinCode"
+            value={personal.pinCode}
+            onChange={onChange}
+          />
         </Box>
       </Flex>
       <Divider my="36px" />
       <Box mt="3">
         <Text>Phone number</Text>
-        <InputMask mask="(999)-999-9999" maskChar="">
-          {() => <Input type="text" variant="filled" w="280px" />}
+        <InputMask
+          mask="(999)-999-9999"
+          maskChar=""
+          name="phoneNumber"
+          value={personal.phoneNumber}
+          onChange={onChange}
+        >
+          {() => (
+            <Input type="text" variant="filled" w="280px" name="phoneNumber" />
+          )}
         </InputMask>
       </Box>
       <Box mt="3">
         <Text>Email address</Text>
-        <Input type="text" variant="filled" w="280px" />
+        <Input
+          type="text"
+          variant="filled"
+          w="280px"
+          name="emailAddress"
+          value={personal.emailAddress}
+          onChange={onChange}
+        />
       </Box>
       <Box mt="3">
         <Text>
@@ -79,7 +159,14 @@ const Tab = () => {
             <QuestionOutlineIcon />
           </Tooltip>
         </Text>
-        <Input type="text" variant="filled" w="280px" />
+        <Input
+          type="text"
+          variant="filled"
+          w="280px"
+          name="webstie"
+          value={personal.website}
+          onChange={onChange}
+        />
       </Box>
     </Container>
   );
