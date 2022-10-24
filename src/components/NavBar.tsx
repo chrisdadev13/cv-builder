@@ -15,7 +15,7 @@ const NavBar = () => {
   const bg = useColorModeValue("white", "#171717");
 
   const themeIcon = () => {
-    return bg == "white" ? <SunIcon /> : <MoonIcon />;
+    return bg == "white" ? <MoonIcon /> : <SunIcon />;
   };
   return (
     <Container
