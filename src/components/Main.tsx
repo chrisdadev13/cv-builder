@@ -36,10 +36,6 @@ const Main = () => {
     <div style={{ display: "flex" }}>
       <NavBar />
       <LeftWrapper cv={cvData} onChangePersonal={handlePersonalData} />
-      <button onClick={() => console.log(cvData)}>Testeo</button>
-      <div
-        dangerouslySetInnerHTML={getPersonalMarkup(cvData.personal.summary)}
-      ></div>
     </div>
   );
 };
