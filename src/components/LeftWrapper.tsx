@@ -30,7 +30,7 @@ const LeftWrapper = ({
       px="10px"
       boxShadow="lg"
       bg={bg}
-      overflowY="auto"
+      overflowY="scroll"
     >
       <Tab personal={cv.personal} onChange={onChangePersonal} />
       <Summary personal={cv.personal} onChange={onChangePersonal} />
