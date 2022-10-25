@@ -34,7 +34,7 @@ const Summary = ({ personal, onChange }: SummaryTypes) => {
         <Text>2. Number Two</Text>
         <Text>3. Number Three</Text>
         <hr />
-        <Text>Font style</Text>
+        <Text>Font style:</Text>
         <Text>
           Bold: **<strong>Texto</strong>**
         </Text>
