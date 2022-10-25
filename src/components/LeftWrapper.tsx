@@ -6,7 +6,6 @@ import { Container, useColorMode, useColorModeValue } from "@chakra-ui/react";
 interface LeftTypes {
   cv: object;
   onChangePersonal: Function;
-  onChangeSummary: Function;
   onChangeWork: Function;
   onChangeEducation: Function;
   onChangeSkills: Function;
@@ -16,7 +15,6 @@ interface LeftTypes {
 const LeftWrapper = ({
   cv,
   onChangePersonal,
-  onChangeSummary,
   onChangeWork,
   onChangeEducation,
   onChangeSkills,
@@ -27,7 +25,7 @@ const LeftWrapper = ({
   return (
     <Container w="320px" h="full" px="10px" boxShadow="lg" bg={bg}>
       <Tab personal={cv.personal} onChange={onChangePersonal} />
-      <Summary summary={cv.summary} onChange={onChangeSummary} />
+      <Summary personal={cv.personal} onChange={onChangePersonal} />
     </Container>
   );
 };
