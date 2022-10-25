@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import {
   Container,
   Box,
@@ -9,7 +9,41 @@ import {
 } from "@chakra-ui/react";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
 
-const Summary = () => {
+interface SummaryTypes {
+  personal: {
+    summary: string;
+  };
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
+}
+
+const Summary = ({ personal, onChange }: SummaryTypes) => {
+  const summaryHelp = () => {
+    return (
+      <Container w="70">
+        <Heading fontSize="18" fontStyle="bold">
+          Markdown basics:
+        </Heading>
+        <hr />
+        <Text>Unordered list: </Text>
+        <Text>* Item in the list</Text>
+        <Text>- Item in the list</Text>
+        <Text>+ Item in the list</Text>
+        <hr />
+        <Text>Ordered list:</Text>
+        <Text>1. Number One</Text>
+        <Text>2. Number Two</Text>
+        <Text>3. Number Three</Text>
+        <hr />
+        <Text>Font style</Text>
+        <Text>
+          Bold: **<strong>Texto</strong>**
+        </Text>
+        <Text>
+          Italic: *<i>Texto</i>*
+        </Text>
+      </Container>
+    );
+  };
   return (
     <Container
       mt="10"
@@ -31,11 +65,19 @@ const Summary = () => {
       <Box>
         <Text>
           Objective
-          <Tooltip label="Give us a brief description of you and your professional life, things you learned and what can you apport">
+          <Tooltip label={summaryHelp()}>
             <QuestionOutlineIcon />
           </Tooltip>
         </Text>
-        <Textarea w="280px" variant="filled" resize="none" h="79px" />
+        <Textarea
+          w="280px"
+          variant="filled"
+          resize="none"
+          h="79px"
+          name="summary"
+          value={personal.summary}
+          onChange={onChange}
+        />
         <Text fontSize="12px" textColor="#AAA">
           This textblock supports markdown
         </Text>

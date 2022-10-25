@@ -7,12 +7,17 @@ import { Remarkable } from "remarkable";
 const Main = () => {
   const [cvData, setCvData] = useState({
     personal: {},
-    summary: "",
     experience: {},
     education: {},
     skills: {},
     certifications: {},
   });
+
+  const md = new Remarkable();
+
+  const getPersonalMarkup = (data) => {
+    return { __html: md.render(data) };
+  };
 
   const handlePersonalData = (event: React.ChangeEvent<HTMLInputElement>) => {
     let name = event.target.name;
@@ -31,6 +36,10 @@ const Main = () => {
     <div style={{ display: "flex" }}>
       <NavBar />
       <LeftWrapper cv={cvData} onChangePersonal={handlePersonalData} />
+      <button onClick={() => console.log(cvData)}>Testeo</button>
+      <div
+        dangerouslySetInnerHTML={getPersonalMarkup(cvData.personal.summary)}
+      ></div>
     </div>
   );
 };
