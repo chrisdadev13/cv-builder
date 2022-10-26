@@ -1,27 +1,29 @@
-import React, { useState, ChangeEventHandler, MouseEventHandler } from "react";
+import React, {
+  useState,
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+} from "react";
 import {
   Container,
   Box,
   Heading,
   Text,
-  Input,
-  Textarea,
-  Button,
   Spacer,
   useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
 import AddButton from "../utils/AddButton";
 import ExpModal from "../utils/ExpModal";
 import moment from "moment";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import EditIcon from "@mui/icons-material/Edit";
 
 const formatDate = (dateValue: string) => {
-  console.log(moment(dateValue).format("LL"));
   return moment(dateValue, "DD.MM.YYYY").format("LL");
 };
 
 const WorkExp = ({ experience, onClickAdd, onClickSave }) => {
-  const [currentModal, setCurrentModal] = useState("0");
+  const [currentModal, setCurrentModal] = useState(0);
   const borderTheme = useColorModeValue("#EDF2F7", "#333");
 
   return (
@@ -51,6 +53,7 @@ const WorkExp = ({ experience, onClickAdd, onClickSave }) => {
           textTransform="capitalize"
           display="flex"
           alignItems="center"
+          key={index}
         >
           <Box>
             <Heading fontSize="16px">{obj.companyName}</Heading>
@@ -60,11 +63,16 @@ const WorkExp = ({ experience, onClickAdd, onClickSave }) => {
             <Text fontSize="10px">{obj.position}</Text>
           </Box>
           <Spacer />
-          <Box cursor="pointer">
-            <MoreVertIcon />
+          <Box
+            cursor="pointer"
+            key={index}
+            onClick={() => setCurrentModal(index)}
+          >
+            <EditIcon />
           </Box>
         </Container>
       ))}
+      <ExpModal data={experience} index={0} />
       <AddButton onClick={onClickAdd} />
     </Container>
   );
