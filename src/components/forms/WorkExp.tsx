@@ -22,9 +22,20 @@ const formatDate = (dateValue: string) => {
   return moment(dateValue, "DD.MM.YYYY").format("LL");
 };
 
-const WorkExp = ({ experience, onClickAdd, onClickSave }) => {
+const WorkExp = ({ experience, onClickAdd, onClickSave, onChange }) => {
   const [currentModal, setCurrentModal] = useState(0);
   const borderTheme = useColorModeValue("#EDF2F7", "#333");
+
+  const [open, setOpen] = useState(false);
+
+  const openModal = (data: object) => {
+    setCurrentModal(data.id);
+    setOpen(true);
+  };
+
+  const closeModal = () => {
+    setOpen(false);
+  };
 
   return (
     <Container w="full" color="#718096" fontSize="sm" textTransform="uppercase">
@@ -63,16 +74,18 @@ const WorkExp = ({ experience, onClickAdd, onClickSave }) => {
             <Text fontSize="10px">{obj.position}</Text>
           </Box>
           <Spacer />
-          <Box
-            cursor="pointer"
-            key={index}
-            onClick={() => setCurrentModal(index)}
-          >
+          <Box cursor="pointer" key={index} onClick={() => openModal(obj)}>
             <EditIcon />
           </Box>
         </Container>
       ))}
-      <ExpModal data={experience} index={0} />
+      <ExpModal
+        data={experience}
+        index={currentModal}
+        open={open}
+        onClickClose={closeModal}
+        onChange={onChange}
+      />
       <AddButton onClick={onClickAdd} />
     </Container>
   );
