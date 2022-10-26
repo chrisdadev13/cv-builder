@@ -26,11 +26,19 @@ export interface ModalType {
   data: ExpField[];
   index: number;
   open: boolean;
+  close: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const ExpModal = ({ data, index, open, onChange, onClick }: ModalType) => {
+const ExpModal = ({
+  data,
+  index,
+  open,
+  close,
+  onChange,
+  onClick,
+}: ModalType) => {
   return (
     <Modal isCentered isOpen={open} size="xl">
       <ModalOverlay />
@@ -52,7 +60,7 @@ const ExpModal = ({ data, index, open, onChange, onClick }: ModalType) => {
             variant="filled"
             name="companyName"
             value={data[index].companyName}
-            onChange={()onChange}
+            onChange={onChange}
           />
         </Box>
         <Flex>
