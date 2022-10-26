@@ -67,8 +67,22 @@ const Main = () => {
     }
   };
 
-  const closeExperienceModal = () => {
-    console.log("cerrar");
+  const handleExperienceData = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    let name = event.target.name;
+    let value = event.target.value;
+
+    setCvData((prev) => {
+      const newExperience = prev.experience.map((item) => {
+        if (item.id === index) {
+          return { ...item, [name]: value };
+        }
+        return item;
+      });
+      return { ...prev, experience: [...newExperience] };
+    });
   };
 
   return (
@@ -78,7 +92,7 @@ const Main = () => {
         cv={cvData}
         onChangePersonal={handlePersonalData}
         onClickAddWork={addExperienceField}
-        onClickSaveWork={closeExperienceModal}
+        onChangeWork={handleExperienceData}
       />
     </div>
   );
