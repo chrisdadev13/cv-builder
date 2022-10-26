@@ -12,6 +12,7 @@ import {
   Flex,
   Spacer,
 } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
 
 export type ExpField = {
   companyName: string;
@@ -25,10 +26,11 @@ export type ExpField = {
 export interface ModalType {
   data: ExpField[];
   index: number;
-  open: boolean;
-  close: boolean;
+  open: any;
+  close: any;
   onChange: ChangeEventHandler<HTMLInputElement>;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClickSave: MouseEventHandler<HTMLButtonElement>;
+  onClickClose: MouseEventHandler<HTMLElement>;
 }
 
 const ExpModal = ({
@@ -37,10 +39,11 @@ const ExpModal = ({
   open,
   close,
   onChange,
-  onClick,
+  onClickSave,
+  onClickClose,
 }: ModalType) => {
   return (
-    <Modal isCentered isOpen={open} size="xl">
+    <Modal isCentered isOpen={open} onClose={close} size="xl">
       <ModalOverlay />
       <ModalContent
         p="20px"
@@ -48,9 +51,15 @@ const ExpModal = ({
         textTransform="uppercase"
         fontSize="14px"
       >
-        <Heading fontSize="18px" fontWeight="bold" textTransform="capitalize">
-          Add Work Experience
-        </Heading>
+        <Box display="flex" alignItems="center">
+          <Heading fontSize="18px" fontWeight="bold" textTransform="capitalize">
+            Add Work Experience
+          </Heading>
+          <Spacer />
+          <Box onClick={onClickClose} cursor="pointer">
+            <CloseIcon />
+          </Box>
+        </Box>
         <Box my="20px">
           <Text>Company</Text>
           <Input
@@ -60,36 +69,76 @@ const ExpModal = ({
             variant="filled"
             name="companyName"
             value={data[index].companyName}
-            onChange={onChange}
+            onChange={(event) => onChange(event, index)}
           />
         </Box>
         <Flex>
           <Box w="50%">
             <Text>Position</Text>
-            <Input type="text" w="100%" h="34px" variant="filled" />
+            <Input
+              type="text"
+              w="100%"
+              h="34px"
+              variant="filled"
+              name="position"
+              value={data[index].position}
+              onChange={(event) => onChange(event, index)}
+            />
           </Box>
           <Spacer mx="5px" />
           <Box w="50%">
             <Text>Website</Text>
-            <Input type="text" w="100%" h="34px" variant="filled" />
+            <Input
+              type="text"
+              w="100%"
+              h="34px"
+              variant="filled"
+              name="website"
+              value={data[index].website}
+              onChange={(event) => onChange(event, index)}
+            />
           </Box>
         </Flex>
         <Flex my="20px">
           <Box w="50%">
-            <Text>Position</Text>
-            <Input type="date" w="100%" h="34px" variant="filled" />
+            <Text>Start date</Text>
+            <Input
+              type="date"
+              w="100%"
+              h="34px"
+              variant="filled"
+              name="startDate"
+              value={data[index].startDate}
+              onChange={(event) => onChange(event, index)}
+            />
           </Box>
           <Spacer mx="5px" />
           <Box w="50%">
-            <Text>Website</Text>
-            <Input type="date" w="100%" h="34px" variant="filled" />
+            <Text>End date</Text>
+            <Input
+              type="date"
+              w="100%"
+              h="34px"
+              variant="filled"
+              name="endDate"
+              value={data[index].endDate}
+              onChange={(event) => onChange(event, index)}
+            />
           </Box>
         </Flex>
         <Box>
           <Text>Summary</Text>
-          <Textarea w="100%" h="60px" variant="filled" resize="none" />
+          <Textarea
+            w="100%"
+            h="60px"
+            variant="filled"
+            resize="none"
+            name="summary"
+            value={data[index].summary}
+            onChange={(event) => onChange(event, index)}
+          />
         </Box>
-        <Button mt="20px" colorScheme="blue" onClick={onClick}>
+        <Button mt="20px" colorScheme="blue" onClick={onClickSave}>
           Save
         </Button>
       </ModalContent>
