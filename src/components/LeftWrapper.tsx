@@ -29,7 +29,7 @@ const LeftWrapper = ({
   const bg = useColorModeValue("white", "#171717");
   return (
     <Container
-      w="320px"
+      w="330px"
       h="full"
       px="10px"
       boxShadow="lg"
