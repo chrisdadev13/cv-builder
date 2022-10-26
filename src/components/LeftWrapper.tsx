@@ -43,6 +43,7 @@ const LeftWrapper = ({
         experience={cv.experience}
         onClickAdd={onClickAddWork}
         onClickSave={onClickSaveWork}
+        onChange={onChangeWork}
       />
       <EduExp />
     </Container>
