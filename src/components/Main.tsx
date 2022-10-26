@@ -3,6 +3,7 @@ import LeftWrapper from "./LeftWrapper";
 import NavBar from "./NavBar";
 import { Container } from "@chakra-ui/react";
 import { Remarkable } from "remarkable";
+import { ExpField } from "./utils/ExpModal";
 
 interface StateProps {
   personal: object;
@@ -15,7 +16,18 @@ interface StateProps {
 const Main = () => {
   const [cvData, setCvData] = useState<StateProps>({
     personal: {},
-    experience: [],
+    experience: [
+      {
+        companyName: "Microsoft, Inc",
+        position: "Full-Stack Developer",
+        website: "www.microsoft.com",
+        startDate: "24/05/2001",
+        endDate: "23/05/2002",
+        summary: "I helped Bill Gates get some b",
+        open: false,
+        id: 0,
+      },
+    ],
     education: [],
     skills: {},
     certificates: [],
@@ -55,20 +67,19 @@ const Main = () => {
     }
   };
 
-  const handleExperienceData = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: string
-  ) => {
-    let name = event.target.name;
-    let value = event.target.value;
+  const closeExperienceModal = () => {
+    console.log("cerrar");
   };
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <NavBar />
-      <LeftWrapper cv={cvData} onChangePersonal={handlePersonalData} />
-      <button onClick={addExperienceField}>ADD button</button>
-      <button onClick={() => console.log(cvData)}>Test button</button>
+      <LeftWrapper
+        cv={cvData}
+        onChangePersonal={handlePersonalData}
+        onClickAddWork={addExperienceField}
+        onClickSaveWork={closeExperienceModal}
+      />
     </div>
   );
 };
