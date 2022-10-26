@@ -11,6 +11,8 @@ interface LeftTypes {
   onChangeEducation: Function;
   onChangeSkills: Function;
   onChangeCourses: Function;
+  onClickAddWork: Function;
+  onClickSaveWork: Function;
 }
 
 const LeftWrapper = ({
@@ -20,6 +22,8 @@ const LeftWrapper = ({
   onChangeEducation,
   onChangeSkills,
   onChangeCourses,
+  onClickAddWork,
+  onClickSaveWork,
 }: LeftTypes) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("white", "#171717");
@@ -34,7 +38,11 @@ const LeftWrapper = ({
     >
       <Tab personal={cv.personal} onChange={onChangePersonal} />
       <Summary personal={cv.personal} onChange={onChangePersonal} />
-      <WorkExp />
+      <WorkExp
+        experience={cv.experience}
+        onClickAdd={onClickAddWork}
+        onClickSave={onClickSaveWork}
+      />
     </Container>
   );
 };
