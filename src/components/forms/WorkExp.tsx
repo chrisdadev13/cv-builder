@@ -22,22 +22,22 @@ const formatDate = (dateValue: string) => {
   return moment(dateValue, "DD.MM.YYYY").format("LL");
 };
 
-const WorkExp = ({ experience, onClickAdd, onClickSave, onChange }) => {
+const WorkExp = ({
+  experience,
+  onClickAdd,
+  onClickSave,
+  onClickDelete,
+  onChange,
+}) => {
   const [currentModal, setCurrentModal] = useState(0);
   const [modalCounter, setModalCounter] = useState(0);
   const borderTheme = useColorModeValue("#EDF2F7", "#333");
 
   const [open, setOpen] = useState(false);
 
-  const openModal = (data: object) => {
-    setCurrentModal(data.id);
+  const openModal = (data: any) => {
     setOpen(true);
   };
-
-  useEffect(() => {
-    openModal(experience[modalCounter]);
-    setModalCounter(modalCounter + 1);
-  }, [experience.length]);
 
   const closeModal = () => {
     setOpen(false);
@@ -75,7 +75,13 @@ const WorkExp = ({ experience, onClickAdd, onClickSave, onChange }) => {
           <Box>
             <Heading fontSize="16px">{obj.companyName}</Heading>
             <Text>
-              {formatDate(obj.startDate)} - {formatDate(obj.endDate)}
+              {formatDate(obj.startDate) != ""
+                ? "Start date"
+                : formatDate(obj.startDate)}{" "}
+              -{" "}
+              {formatDate(obj.endDate) != ""
+                ? "End date"
+                : formatDate(obj.endDate)}
             </Text>
             <Text fontSize="10px">{obj.position}</Text>
           </Box>
@@ -91,9 +97,9 @@ const WorkExp = ({ experience, onClickAdd, onClickSave, onChange }) => {
         open={open}
         onClickClose={closeModal}
         onChange={onChange}
-        onClickSave={closeModal}
+        onClickDelete={() => onClickDelete(0)}
       />
-      <AddButton onClick={onClickAdd} />
+      <AddButton onClick={() => onClickAdd(openModal)} />
     </Container>
   );
 };
