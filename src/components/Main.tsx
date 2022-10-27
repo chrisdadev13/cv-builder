@@ -18,13 +18,12 @@ const Main = () => {
     personal: {},
     experience: [
       {
-        companyName: "Microsoft, Inc",
-        position: "Full-Stack Developer",
-        website: "www.microsoft.com",
-        startDate: "24/05/2001",
-        endDate: "23/05/2002",
-        summary: "I helped Bill Gates get some b",
-        open: false,
+        companyName: "",
+        position: "",
+        website: "",
+        startDate: "",
+        endDate: "",
+        summary: "",
         id: 0,
       },
     ],
@@ -60,7 +59,6 @@ const Main = () => {
           ...prev.experience,
           {
             id: prev.experience.length,
-            open: true,
           },
         ],
       }));
