@@ -7,7 +7,7 @@ import { ExpField } from "./utils/ExpModal";
 
 interface StateProps {
   personal: object;
-  experience: Array<string>;
+  experience: Array<any>;
   education: Array<string>;
   skills: object;
   certificates: Array<string>;
@@ -18,12 +18,17 @@ const Main = () => {
     personal: {},
     experience: [
       {
-        companyName: "",
-        position: "",
-        website: "",
-        startDate: "",
-        endDate: "",
-        summary: "",
+        companyName: "DP Technology Corp.",
+        position: "Frontend Developer, Stuttgart DE",
+        website: "www.espritcam.com",
+        startDate: "09/01/2015",
+        endDate: "09/07/2018",
+        summary:
+          "* Work closely with programmers and clients to meet project requirements, goals and functionality" +
+          "\n" +
+          "* Develop and integrate customized themes into WordPress, PHP-Fusion, and Concrete5." +
+          "\n" +
+          "* Enable site-wide promotions by programming HTML5 canvases to animate particles on web backgrounds",
         id: 0,
       },
     ],
@@ -51,7 +56,7 @@ const Main = () => {
     }));
   };
 
-  const addExperienceField = () => {
+  const addExperienceField = (openModal: Function) => {
     if (cvData.experience.length < 5) {
       setCvData((prev: any) => ({
         ...prev,
@@ -62,7 +67,12 @@ const Main = () => {
           },
         ],
       }));
+      openModal();
     }
+  };
+
+  const deleteExperienceField = () => {
+    console.log("Hola");
   };
 
   const handleExperienceData = (
@@ -90,6 +100,7 @@ const Main = () => {
         cv={cvData}
         onChangePersonal={handlePersonalData}
         onClickAddWork={addExperienceField}
+        onClickDeleteWork={deleteExperienceField}
         onChangeWork={handleExperienceData}
       />
     </div>
