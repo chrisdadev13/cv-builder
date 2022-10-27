@@ -24,7 +24,7 @@ const LeftWrapper = ({
   onChangeSkills,
   onChangeCourses,
   onClickAddWork,
-  onClickSaveWork,
+  onClickDeleteWork,
 }: LeftTypes) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("white", "#171717");
@@ -42,7 +42,7 @@ const LeftWrapper = ({
       <WorkExp
         experience={cv.experience}
         onClickAdd={onClickAddWork}
-        onClickSave={onClickSaveWork}
+        onClickDelete={onClickDeleteWork}
         onChange={onChangeWork}
       />
       <EduExp />
