@@ -24,6 +24,7 @@ const formatDate = (dateValue: string) => {
 
 const WorkExp = ({ experience, onClickAdd, onClickSave, onChange }) => {
   const [currentModal, setCurrentModal] = useState(0);
+  const [modalCounter, setModalCounter] = useState(0);
   const borderTheme = useColorModeValue("#EDF2F7", "#333");
 
   const [open, setOpen] = useState(false);
@@ -32,6 +33,11 @@ const WorkExp = ({ experience, onClickAdd, onClickSave, onChange }) => {
     setCurrentModal(data.id);
     setOpen(true);
   };
+
+  useEffect(() => {
+    openModal(experience[modalCounter]);
+    setModalCounter(modalCounter + 1);
+  }, [experience.length]);
 
   const closeModal = () => {
     setOpen(false);
@@ -85,6 +91,7 @@ const WorkExp = ({ experience, onClickAdd, onClickSave, onChange }) => {
         open={open}
         onClickClose={closeModal}
         onChange={onChange}
+        onClickSave={closeModal}
       />
       <AddButton onClick={onClickAdd} />
     </Container>
