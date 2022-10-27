@@ -12,7 +12,7 @@ import {
   Flex,
   Spacer,
 } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
 import InputMask from "react-input-mask";
 
 export type ExpField = {
@@ -30,7 +30,7 @@ export interface ModalType {
   open: any;
   close: any;
   onChange: ChangeEventHandler<HTMLInputElement>;
-  onClickSave: MouseEventHandler<HTMLButtonElement>;
+  onClickDelete: MouseEventHandler<HTMLButtonElement>;
   onClickClose: MouseEventHandler<HTMLElement>;
 }
 
@@ -40,7 +40,7 @@ const ExpModal = ({
   open,
   close,
   onChange,
-  onClickSave,
+  onClickDelete,
   onClickClose,
 }: ModalType) => {
   return (
@@ -157,7 +157,7 @@ const ExpModal = ({
             onChange={(event) => onChange(event, index)}
           />
         </Box>
-        <Button mt="20px" colorScheme="blue" onClick={onClickSave}>
+        <Button mt="20px" colorScheme="blue" onClick={onClickDelete}>
           Save
         </Button>
       </ModalContent>
