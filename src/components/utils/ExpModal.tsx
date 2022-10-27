@@ -13,6 +13,7 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
+import InputMask from "react-input-mask";
 
 export type ExpField = {
   companyName: string;
@@ -102,28 +103,46 @@ const ExpModal = ({
         <Flex my="20px">
           <Box w="50%">
             <Text>Start date</Text>
-            <Input
-              type="date"
-              w="100%"
-              h="34px"
-              variant="filled"
+            <InputMask
+              mask="99/99/9999"
+              maskChar=""
               name="startDate"
               value={data[index].startDate}
               onChange={(event) => onChange(event, index)}
-            />
+            >
+              {() => (
+                <Input
+                  type="text"
+                  w="100%"
+                  h="34px"
+                  variant="filled"
+                  name="startDate"
+                  value={data[index].startDate}
+                />
+              )}
+            </InputMask>
           </Box>
           <Spacer mx="5px" />
           <Box w="50%">
             <Text>End date</Text>
-            <Input
-              type="date"
-              w="100%"
-              h="34px"
-              variant="filled"
+            <InputMask
+              mask="99/99/9999"
+              maskChar=""
               name="endDate"
               value={data[index].endDate}
               onChange={(event) => onChange(event, index)}
-            />
+            >
+              {() => (
+                <Input
+                  type="text"
+                  w="100%"
+                  h="34px"
+                  variant="filled"
+                  name="endDate"
+                  value={data[index].endDate}
+                />
+              )}
+            </InputMask>
           </Box>
         </Flex>
         <Box>
