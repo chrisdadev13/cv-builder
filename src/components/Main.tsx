@@ -42,8 +42,18 @@ const Main = () => {
         id: 0,
       },
     ],
-    education: [],
-    skills: {},
+    education: [
+      {
+        university: "",
+        studyField: "",
+        degree: "",
+        gpa: "",
+        startDate: "",
+        endDate: "",
+        summary: "",
+      },
+    ],
+    skills: [],
     certificates: [],
   });
 
