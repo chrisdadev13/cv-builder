@@ -62,7 +62,7 @@ const Main = () => {
 
   const md = new Remarkable();
 
-  const getPersonalMarkup = (data: string) => {
+  const getMarkupSupport = (data: string) => {
     return { __html: md.render(data) };
   };
 
