@@ -2,6 +2,7 @@ import { ChangeEventHandler, MouseEventHandler } from "react";
 import Tab from "./Tab";
 import Summary from "./Summary";
 import WorkExp from "./WorkExp";
+import EduExp from "./EduExp";
 import { Container, useColorModeValue } from "@chakra-ui/react";
 
 import FullData from "../utils/interfaces/cvTypes";
@@ -19,6 +20,14 @@ interface DataTypes {
 
   expModalOpen: boolean;
   expModalCounter: number;
+
+  addEduData: MouseEventHandler;
+  saveEduData: MouseEventHandler;
+  editEduData: MouseEventHandler;
+  removeEduData: MouseEventHandler;
+
+  eduModalOpen: boolean;
+  eduModalCounter: number;
 }
 
 const DataForm = ({
@@ -56,6 +65,7 @@ const DataForm = ({
         modalOpen={expModalOpen}
         counter={expModalCounter}
       />
+      <EduExp />
     </Container>
   );
 };
