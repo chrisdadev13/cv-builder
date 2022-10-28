@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import { ChangeEventHandler } from "react";
 import InputMask from "react-input-mask";
 import {
   Container,
@@ -13,21 +13,11 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
+import PersonalTypes from "../utils/personalTypes";
 
 interface TabTypes {
-  personal: {
-    firstName: string;
-    lastName: string;
-    subtitle: string;
-    address1: string;
-    address2: string;
-    city: string;
-    pinCode: string;
-    phoneNumber: string;
-    emailAddress: string;
-    website: string;
-  };
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  personal: PersonalTypes;
+  onChange: ChangeEventHandler<HTMLElement>;
 }
 
 const Tab = ({ personal, onChange }: TabTypes) => {
@@ -163,7 +153,7 @@ const Tab = ({ personal, onChange }: TabTypes) => {
           type="text"
           variant="filled"
           w="280px"
-          name="webstie"
+          name="website"
           value={personal.website}
           onChange={onChange}
         />

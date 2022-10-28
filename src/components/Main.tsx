@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import LeftWrapper from "./LeftWrapper";
+import DataForm from "./data/DataForm";
 import NavBar from "./NavBar";
-import { Container } from "@chakra-ui/react";
 import { Remarkable } from "remarkable";
-import { ExpField } from "./utils/ExpModal";
 
 interface StateProps {
   personal: object;
@@ -15,7 +13,19 @@ interface StateProps {
 
 const Main = () => {
   const [cvData, setCvData] = useState<StateProps>({
-    personal: {},
+    personal: {
+      firstName: "",
+      lastName: "",
+      subtitle: "",
+      address1: "",
+      address2: "",
+      city: "",
+      pinCode: "",
+      phoneNumber: "",
+      emailAddress: "",
+      website: "",
+      summary: "",
+    },
     experience: [
       {
         companyName: "DP Technology Corp.",
@@ -96,7 +106,7 @@ const Main = () => {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <NavBar />
-      <LeftWrapper
+      <DataForm
         cv={cvData}
         onChangePersonal={handlePersonalData}
         onClickAddWork={addExperienceField}
