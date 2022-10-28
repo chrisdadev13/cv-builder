@@ -47,6 +47,9 @@ const Main = () => {
     certificates: [],
   });
 
+  const [expModal, setExpModal] = useState(false);
+  const [expFieldCounter, setExpCounter] = useState(0);
+
   const md = new Remarkable();
 
   const getPersonalMarkup = (data: string) => {
@@ -66,23 +69,50 @@ const Main = () => {
     }));
   };
 
-  const addExperienceField = (openModal: Function) => {
+  const addExperienceField = () => {
     if (cvData.experience.length < 5) {
       setCvData((prev: any) => ({
         ...prev,
         experience: [
           ...prev.experience,
           {
+            companyName: "",
+            position: "",
+            startDate: "",
+            endDate: "",
+            website: "",
+            summary: "",
             id: prev.experience.length,
           },
         ],
       }));
-      openModal();
+      setExpCounter(expFieldCounter + 1);
+      setExpModal(true);
     }
   };
 
+  const saveExperienceField = () => {
+    if (cvData.experience[expFieldCounter].companyName == "") {
+      console.log("Invalid");
+    } else {
+      setExpModal(false);
+    }
+  };
+
+  const editExperienceField = (index: number) => {
+    setExpCounter(index);
+    setExpModal(true);
+  };
+
   const deleteExperienceField = () => {
-    console.log("Hola");
+    setCvData((prev) => {
+      const deleteField = prev.experience.filter(
+        (item) => item.id !== expFieldCounter
+      );
+      return { ...prev, experience: [...deleteField] };
+    });
+    setExpModal(false);
+    setExpCounter(expFieldCounter - 1);
   };
 
   const handleExperienceData = (
@@ -109,9 +139,13 @@ const Main = () => {
       <DataForm
         cv={cvData}
         onChangePersonal={handlePersonalData}
-        onClickAddWork={addExperienceField}
-        onClickDeleteWork={deleteExperienceField}
-        onChangeWork={handleExperienceData}
+        onChangeExperience={handleExperienceData}
+        addExpData={addExperienceField}
+        saveExpData={saveExperienceField}
+        editExpData={editExperienceField}
+        removeExpData={deleteExperienceField}
+        expModalOpen={expModal}
+        expModalCounter={expFieldCounter}
       />
     </div>
   );

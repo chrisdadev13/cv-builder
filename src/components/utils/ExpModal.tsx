@@ -14,37 +14,29 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
 import InputMask from "react-input-mask";
-
-export type ExpField = {
-  companyName: string;
-  position: string;
-  website: string;
-  startDate: string;
-  endDate: string;
-  summary: string;
-};
+import experienceTypes from "./interfaces/experienceTypes";
 
 export interface ModalType {
-  data: ExpField[];
+  data: Array<experienceTypes>;
   index: number;
-  open: any;
-  close: any;
+  open: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
+  onClickSave: MouseEventHandler<HTMLButtonElement>;
   onClickDelete: MouseEventHandler<HTMLButtonElement>;
-  onClickClose: MouseEventHandler<HTMLElement>;
+  onClickClose: MouseEventHandler<HTMLButtonElement>;
 }
 
 const ExpModal = ({
   data,
   index,
   open,
-  close,
   onChange,
+  onClickSave,
   onClickDelete,
   onClickClose,
 }: ModalType) => {
   return (
-    <Modal isCentered isOpen={open} onClose={close} size="xl">
+    <Modal isCentered isOpen={open} onClose={() => !open} size="xl">
       <ModalOverlay />
       <ModalContent
         p="20px"
@@ -157,9 +149,17 @@ const ExpModal = ({
             onChange={(event) => onChange(event, index)}
           />
         </Box>
-        <Button mt="20px" colorScheme="blue" onClick={onClickDelete}>
-          Save
-        </Button>
+        <Box display="flex" alignItems="center" mt="5">
+          <Button colorScheme="blue" onClick={onClickSave}>
+            Save
+          </Button>
+          {index !== 0 && (
+            <Button ml="2" colorScheme="red" onClick={onClickDelete}>
+              <DeleteIcon />
+              Delete
+            </Button>
+          )}
+        </Box>
       </ModalContent>
     </Modal>
   );

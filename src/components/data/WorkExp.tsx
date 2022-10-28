@@ -17,31 +17,34 @@ import AddButton from "../utils/AddButton";
 import ExpModal from "../utils/ExpModal";
 import moment from "moment";
 import EditIcon from "@mui/icons-material/Edit";
+import experienceTypes from "../utils/interfaces/experienceTypes";
 
 const formatDate = (dateValue: string) => {
-  return moment(dateValue, "DD.MM.YYYY").format("LL");
+  return moment(dateValue, "DD/MM/YYYY").format("LL");
 };
+
+interface WorkTypes {
+  experience: Array<experienceTypes>;
+  modalOpen: boolean;
+  counter: number;
+  onClickAdd: MouseEventHandler;
+  onClickSave: MouseEventHandler;
+  onClickEdit: MouseEventHandler;
+  onClickDelete: MouseEventHandler;
+  onChange: ChangeEventHandler;
+}
 
 const WorkExp = ({
   experience,
+  modalOpen,
+  counter,
   onClickAdd,
   onClickSave,
+  onClickEdit,
   onClickDelete,
   onChange,
-}) => {
-  const [currentModal, setCurrentModal] = useState(0);
-  const [modalCounter, setModalCounter] = useState(0);
+}: WorkTypes) => {
   const borderTheme = useColorModeValue("#EDF2F7", "#333");
-
-  const [open, setOpen] = useState(false);
-
-  const openModal = (data: any) => {
-    setOpen(true);
-  };
-
-  const closeModal = () => {
-    setOpen(false);
-  };
 
   return (
     <Container w="full" color="#718096" fontSize="sm" textTransform="uppercase">
@@ -75,31 +78,31 @@ const WorkExp = ({
           <Box>
             <Heading fontSize="16px">{obj.companyName}</Heading>
             <Text>
-              {formatDate(obj.startDate) != ""
+              {formatDate(obj.startDate) == ""
                 ? "Start date"
                 : formatDate(obj.startDate)}{" "}
               -{" "}
-              {formatDate(obj.endDate) != ""
+              {formatDate(obj.endDate) == ""
                 ? "End date"
                 : formatDate(obj.endDate)}
             </Text>
             <Text fontSize="10px">{obj.position}</Text>
           </Box>
           <Spacer />
-          <Box cursor="pointer" key={index} onClick={() => openModal(obj)}>
+          <Box cursor="pointer" key={index} onClick={() => onClickEdit(index)}>
             <EditIcon />
           </Box>
         </Container>
       ))}
       <ExpModal
+        open={modalOpen}
         data={experience}
-        index={currentModal}
-        open={open}
-        onClickClose={closeModal}
+        index={counter}
         onChange={onChange}
-        onClickDelete={() => onClickDelete(0)}
+        onClickSave={onClickSave}
+        onClickDelete={onClickDelete}
       />
-      <AddButton onClick={() => onClickAdd(openModal)} />
+      <AddButton onClick={onClickAdd} />
     </Container>
   );
 };

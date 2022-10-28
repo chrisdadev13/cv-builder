@@ -2,7 +2,11 @@ import React, { MouseEventHandler } from "react";
 import { Box, Button } from "@chakra-ui/react";
 import AddIcon from "@mui/icons-material/Add";
 
-const AddButton = ({ onClick }: MouseEventHandler<HTMLButtonElement>) => {
+interface AddBtn {
+  onClick: MouseEventHandler;
+}
+
+const AddButton = ({ onClick }: AddBtn) => {
   return (
     <Box>
       <Button

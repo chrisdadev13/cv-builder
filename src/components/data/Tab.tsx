@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
-import PersonalTypes from "../utils/personalTypes";
+import PersonalTypes from "../utils/interfaces/personalTypes";
 
 interface TabTypes {
   personal: PersonalTypes;
