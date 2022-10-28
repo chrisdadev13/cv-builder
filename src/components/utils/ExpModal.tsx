@@ -49,7 +49,7 @@ const ExpModal = ({
             Add Work Experience
           </Heading>
           <Spacer />
-          <Box onClick={onClickClose} cursor="pointer">
+          <Box onClick={onClickSave} cursor="pointer">
             <CloseIcon />
           </Box>
         </Box>
