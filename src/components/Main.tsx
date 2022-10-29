@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DataForm from "./data/DataForm";
 import NavBar from "./NavBar";
+import Template from "./Template";
 import { Remarkable } from "remarkable";
 
 interface StateProps {
@@ -153,7 +154,7 @@ const Main = () => {
   };
 
   const addEducationField = () => {
-    if (cvData.education.length < 5) {
+    if (cvData.education.length < 3) {
       setCvData((prev: any) => ({
         ...prev,
         education: [
@@ -177,8 +178,7 @@ const Main = () => {
 
   const saveEducationField = () => {
     if (cvData.education[eduFieldCounter].university == "") {
-      console.log("invalid");
-      console.log(cvData.education[eduFieldCounter]);
+      return 0;
     } else {
       setEduModal(false);
     }
@@ -196,8 +196,8 @@ const Main = () => {
       );
       return { ...prev, education: [...deleteField] };
     });
-    setExpModal(false);
-    setExpCounter(expFieldCounter - 1);
+    setEduModal(false);
+    setEduCounter(eduFieldCounter - 1);
   };
 
   const handleEducationData = (
@@ -239,6 +239,7 @@ const Main = () => {
         eduModalOpen={eduModal}
         eduModalCounter={eduFieldCounter}
       />
+      <Template cv={cvData} />
     </div>
   );
 };
