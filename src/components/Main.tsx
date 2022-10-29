@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DataForm from "./data/DataForm";
 import NavBar from "./NavBar";
 import Template from "./Template";
+import jsPDF from "jspdf";
 import { Remarkable } from "remarkable";
 
 interface StateProps {
@@ -218,6 +219,14 @@ const Main = () => {
     });
   };
 
+  const downloadPdf = () => {
+    const pdf = new jsPDF("portrait", "pt", "a4");
+    const data = document.querySelector("#testing");
+    pdf.html(data).then(() => {
+      pdf.save("pdftesteo.pdf");
+    });
+  };
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <NavBar />
@@ -239,7 +248,8 @@ const Main = () => {
         eduModalOpen={eduModal}
         eduModalCounter={eduFieldCounter}
       />
-      <Template cv={cvData} />
+      <Template cv={cvData} markUp={getMarkupSupport} />
+      <button onClick={downloadPdf}>Testeo</button>
     </div>
   );
 };

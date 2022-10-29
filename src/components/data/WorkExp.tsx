@@ -20,7 +20,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import experienceTypes from "../utils/interfaces/experienceTypes";
 
 const formatDate = (dateValue: string) => {
-  return moment(dateValue, "DD/MM/YYYY").format("LL");
+  return dateValue != ""
+    ? moment(dateValue, "DD/MM/YYYY").format("LL")
+    : "Current date";
 };
 
 interface WorkTypes {
