@@ -6,7 +6,7 @@ import { Remarkable } from "remarkable";
 interface StateProps {
   personal: object;
   experience: Array<any>;
-  education: Array<string>;
+  education: Array<any>;
   skills: object;
   certificates: Array<string>;
 }
@@ -44,13 +44,19 @@ const Main = () => {
     ],
     education: [
       {
-        university: "",
-        studyField: "",
-        degree: "",
-        gpa: "",
-        startDate: "",
-        endDate: "",
-        summary: "",
+        university: "Harvard University",
+        studyField: "Computer Science",
+        degree: "Bachelor of Science",
+        gpa: "Honors: cum laude (GPA: 3.6/4.0)",
+        startDate: "01/04/2011",
+        endDate: "05/06/2014",
+        summary:
+          "* Data Structures and Algorithms" +
+          "\n" +
+          "* Logic Design" +
+          "\n" +
+          "* Artificial Intelligence",
+        id: 0,
       },
     ],
     skills: [],
@@ -59,6 +65,9 @@ const Main = () => {
 
   const [expModal, setExpModal] = useState(false);
   const [expFieldCounter, setExpCounter] = useState(0);
+
+  const [eduModal, setEduModal] = useState(false);
+  const [eduFieldCounter, setEduCounter] = useState(0);
 
   const md = new Remarkable();
 
@@ -143,6 +152,72 @@ const Main = () => {
     });
   };
 
+  const addEducationField = () => {
+    if (cvData.education.length < 5) {
+      setCvData((prev: any) => ({
+        ...prev,
+        education: [
+          ...prev.education,
+          {
+            university: "",
+            studyField: "",
+            degree: "",
+            gpa: "",
+            startDate: "",
+            endDate: "",
+            summary: "",
+            id: prev.education.length,
+          },
+        ],
+      }));
+      setEduCounter(eduFieldCounter + 1);
+      setEduModal(true);
+    }
+  };
+
+  const saveEducationField = () => {
+    if (cvData.education[eduFieldCounter].university == "") {
+      console.log("invalid");
+      console.log(cvData.education[eduFieldCounter]);
+    } else {
+      setEduModal(false);
+    }
+  };
+
+  const editEducationField = (index: number) => {
+    setEduCounter(index);
+    setEduModal(true);
+  };
+
+  const deleteEducationField = () => {
+    setCvData((prev) => {
+      const deleteField = prev.education.filter(
+        (item) => item.id !== eduFieldCounter
+      );
+      return { ...prev, education: [...deleteField] };
+    });
+    setExpModal(false);
+    setExpCounter(expFieldCounter - 1);
+  };
+
+  const handleEducationData = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    let name = event.target.name;
+    let value = event.target.value;
+
+    setCvData((prev) => {
+      const newEducation = prev.education.map((item) => {
+        if (item.id === index) {
+          return { ...item, [name]: value };
+        }
+        return item;
+      });
+      return { ...prev, education: [...newEducation] };
+    });
+  };
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <NavBar />
@@ -150,12 +225,19 @@ const Main = () => {
         cv={cvData}
         onChangePersonal={handlePersonalData}
         onChangeExperience={handleExperienceData}
+        onChangeEducation={handleEducationData}
         addExpData={addExperienceField}
         saveExpData={saveExperienceField}
         editExpData={editExperienceField}
         removeExpData={deleteExperienceField}
         expModalOpen={expModal}
         expModalCounter={expFieldCounter}
+        addEduData={addEducationField}
+        saveEduData={saveEducationField}
+        editEduData={editEducationField}
+        removeEduData={deleteEducationField}
+        eduModalOpen={eduModal}
+        eduModalCounter={eduFieldCounter}
       />
     </div>
   );

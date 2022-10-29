@@ -12,6 +12,7 @@ interface DataTypes {
   cv: FullData;
   onChangePersonal: ChangeEventHandler;
   onChangeExperience: ChangeEventHandler;
+  onChangeEducation: ChangeEventHandler;
 
   addExpData: MouseEventHandler;
   saveExpData: MouseEventHandler;
@@ -34,6 +35,7 @@ const DataForm = ({
   cv,
   onChangePersonal,
   onChangeExperience,
+  onChangeEducation,
 
   addExpData,
   saveExpData,
@@ -42,6 +44,14 @@ const DataForm = ({
 
   expModalOpen,
   expModalCounter,
+
+  addEduData,
+  saveEduData,
+  editEduData,
+  removeEduData,
+
+  eduModalOpen,
+  eduModalCounter,
 }: DataTypes) => {
   const bg = useColorModeValue("white", "#171717");
   return (
@@ -65,7 +75,16 @@ const DataForm = ({
         modalOpen={expModalOpen}
         counter={expModalCounter}
       />
-      <EduExp />
+      <EduExp
+        education={cv.education}
+        onChange={onChangeEducation}
+        onClickAdd={addEduData}
+        onClickSave={saveEduData}
+        onClickEdit={editEduData}
+        onClickDelete={removeEduData}
+        modalOpen={eduModalOpen}
+        counter={eduModalCounter}
+      />
     </Container>
   );
 };
