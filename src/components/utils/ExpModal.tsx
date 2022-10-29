@@ -17,7 +17,7 @@ import InputMask from "react-input-mask";
 import experienceTypes from "./interfaces/experienceTypes";
 
 export interface ModalType {
-  data: Array<experienceTypes>;
+  data: Array<any>;
   index: number;
   open: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
