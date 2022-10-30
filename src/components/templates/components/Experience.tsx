@@ -4,25 +4,28 @@ import { Remarkable } from "remarkable";
 
 const Experience = ({ experience, markUpSupport }) => {
   return (
-    <Box textAlign="center" mr="5">
-      <Heading fontSize="md">Work Experience</Heading>
+    <Box textAlign="center" w="100%">
+      <Heading fontSize="xs">Work Experience</Heading>
       <Box>
         {experience.map((item) => (
           <Box>
-            <Text fontSize="xs">{item.companyName}</Text>
-            <Text fontSize="xs" color="#adadad">
+            <Text fontSize="10px" fontWeight="bold">
+              {item.companyName}
+            </Text>
+            <Text fontSize="10px" color="#adadad">
               {item.position}
             </Text>
-            <Text fontSize="xs" color="#adadad">
+            <Text fontSize="10px" color="#adadad">
               {item.startDate} - {item.endDate}
             </Text>
             <Text
-              fontSize="xs"
+              fontSize="10px"
               dangerouslySetInnerHTML={markUpSupport(item.summary)}
             />
-            <Text fontSize="xs" fontWeight="bold">
+            <Text fontSize="10px" fontWeight="bold">
               {item.website}
             </Text>
+            <Divider mt="5" />
           </Box>
         ))}
       </Box>

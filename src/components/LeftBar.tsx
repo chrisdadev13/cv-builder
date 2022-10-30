@@ -16,7 +16,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import BadgeIcon from "@mui/icons-material/Badge";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 
-const NavBar = () => {
+const LeftBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("white", "#171717");
 
@@ -80,4 +80,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default LeftBar;

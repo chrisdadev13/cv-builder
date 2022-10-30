@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import DataForm from "./data/DataForm";
-import NavBar from "./NavBar";
+import LeftBar from "./LeftBar";
 import Template from "./Template";
 import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import { Remarkable } from "remarkable";
+import { Box } from "@chakra-ui/react";
+import { height } from "@mui/system";
 
 interface StateProps {
   personal: object;
@@ -223,13 +226,13 @@ const Main = () => {
     const pdf = new jsPDF("portrait", "pt", "a4");
     const data = document.querySelector("#testing");
     pdf.html(data).then(() => {
-      pdf.save("pdftesteo.pdf");
+      pdf.save("curriculum.pdf");
     });
   };
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
-      <NavBar />
+      <LeftBar />
       <DataForm
         cv={cvData}
         onChangePersonal={handlePersonalData}
@@ -248,7 +251,18 @@ const Main = () => {
         eduModalOpen={eduModal}
         eduModalCounter={eduFieldCounter}
       />
-      <Template cv={cvData} markUp={getMarkupSupport} />
+      <div
+        style={{
+          marginTop: "61px",
+          marginLeft: "50px",
+          boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.05)",
+          width: "634px",
+          height: "898px",
+          paddingLeft: "15px",
+        }}
+      >
+        <Template cv={cvData} markUp={getMarkupSupport} />
+      </div>
       <button onClick={downloadPdf}>Testeo</button>
     </div>
   );

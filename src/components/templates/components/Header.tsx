@@ -8,25 +8,25 @@ const Header = ({ personal }) => {
       flexDir="column"
       alignItems="center"
       justifyContent="center"
-      mr="5"
       color="black"
+      w="100%"
     >
-      <Heading fontSize="lg">
+      <Heading fontSize="md">
         {personal.firstName} {personal.lastName}
       </Heading>
-      <Text fontSize="md" color="#adadad" mb="5">
+      <Text fontSize="xs" color="#adadad" mb="5">
         {personal.subtitle}
       </Text>
       <Box textAlign="center">
-        <Text fontSize="xs">
+        <Text fontSize="10px">
           {personal.address1} - {personal.address2}, {personal.city}{" "}
           {personal.pinCode}
         </Text>
-        <Text fontSize="xs">
+        <Text fontSize="10px">
           {personal.phoneNumber} - {personal.emailAddress} - {personal.website}
         </Text>
       </Box>
-      <Divider my="3" />
+      <Divider mt="3" />
     </Box>
   );
 };
