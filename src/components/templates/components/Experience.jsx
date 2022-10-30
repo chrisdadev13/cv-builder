@@ -7,8 +7,8 @@ const Experience = ({ experience, markUpSupport }) => {
     <Box color="black" textAlign="center" w="100%">
       <Heading fontSize="xs">Work Experience</Heading>
       <Box>
-        {experience.map((item) => (
-          <Box>
+        {experience.map((item, index) => (
+          <Box key={index}>
             <Text fontSize="10px" fontWeight="bold">
               {item.companyName}
             </Text>

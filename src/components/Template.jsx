@@ -1,6 +1,5 @@
 import React from "react";
 import { Container } from "@chakra-ui/react";
-import jsPDF, { jsPdf } from "jspdf";
 import Header from "./templates/components/Header";
 import Summary from "./templates/components/Summary";
 import Experience from "./templates/components/Experience";

@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  ChangeEventHandler,
-  MouseEventHandler,
-  useEffect,
-} from "react";
+import React from "react";
 import {
   Container,
   Box,
@@ -11,33 +6,18 @@ import {
   Text,
   Spacer,
   useColorModeValue,
-  useDisclosure,
 } from "@chakra-ui/react";
 import AddButton from "../utils/AddButton";
-import ExpModal from "../utils/ExpModal";
+import EduModal from "../utils/EduModal";
 import moment from "moment";
 import EditIcon from "@mui/icons-material/Edit";
-import experienceTypes from "../utils/interfaces/experienceTypes";
 
-const formatDate = (dateValue: string) => {
-  return dateValue != ""
-    ? moment(dateValue, "DD/MM/YYYY").format("LL")
-    : "Current date";
+const formatDate = (dateValue) => {
+  return moment(dateValue, "DD/MM/YYYY").format("LL");
 };
 
-interface WorkTypes {
-  experience: Array<experienceTypes>;
-  modalOpen: boolean;
-  counter: number;
-  onClickAdd: MouseEventHandler;
-  onClickSave: MouseEventHandler;
-  onClickEdit: MouseEventHandler;
-  onClickDelete: MouseEventHandler;
-  onChange: ChangeEventHandler;
-}
-
-const WorkExp = ({
-  experience,
+const EduExp = ({
+  education,
   modalOpen,
   counter,
   onClickAdd,
@@ -45,13 +25,13 @@ const WorkExp = ({
   onClickEdit,
   onClickDelete,
   onChange,
-}: WorkTypes) => {
+}) => {
   const borderTheme = useColorModeValue("#EDF2F7", "#333");
 
   return (
     <Container w="full" color="#718096" fontSize="sm" textTransform="uppercase">
       <Heading
-        id="experience"
+        id="school"
         size="lg"
         as="h2"
         mb="24px"
@@ -59,9 +39,9 @@ const WorkExp = ({
         mt="5"
         textTransform="capitalize"
       >
-        Work Experience
+        Education
       </Heading>
-      {experience.map((obj, index) => (
+      {education.map((obj, index) => (
         <Container
           w="280px"
           h="70px"
@@ -78,7 +58,7 @@ const WorkExp = ({
           key={index}
         >
           <Box>
-            <Heading fontSize="16px">{obj.companyName}</Heading>
+            <Heading fontSize="16px">{obj.university}</Heading>
             <Text>
               {formatDate(obj.startDate) == ""
                 ? "Start date"
@@ -88,7 +68,9 @@ const WorkExp = ({
                 ? "End date"
                 : formatDate(obj.endDate)}
             </Text>
-            <Text fontSize="10px">{obj.position}</Text>
+            <Text fontSize="10px">
+              {obj.degree}, {obj.studyField}
+            </Text>
           </Box>
           <Spacer />
           <Box cursor="pointer" key={index} onClick={() => onClickEdit(index)}>
@@ -96,9 +78,9 @@ const WorkExp = ({
           </Box>
         </Container>
       ))}
-      <ExpModal
+      <EduModal
         open={modalOpen}
-        data={experience}
+        data={education}
         index={counter}
         onChange={onChange}
         onClickSave={onClickSave}
@@ -109,4 +91,4 @@ const WorkExp = ({
   );
 };
 
-export default WorkExp;
+export default EduExp;

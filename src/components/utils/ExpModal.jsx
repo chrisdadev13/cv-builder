@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, MouseEventHandler } from "react";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -14,17 +14,6 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
 import InputMask from "react-input-mask";
-import experienceTypes from "./interfaces/experienceTypes";
-
-export interface ModalType {
-  data: Array<any>;
-  index: number;
-  open: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  onClickSave: MouseEventHandler<HTMLButtonElement>;
-  onClickDelete: MouseEventHandler<HTMLButtonElement>;
-  onClickClose: MouseEventHandler<HTMLButtonElement>;
-}
 
 const ExpModal = ({
   data,
@@ -34,7 +23,7 @@ const ExpModal = ({
   onClickSave,
   onClickDelete,
   onClickClose,
-}: ModalType) => {
+}) => {
   return (
     <Modal isCentered isOpen={open} onClose={() => !open} size="xl">
       <ModalOverlay />

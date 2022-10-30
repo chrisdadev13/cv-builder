@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ChangeEventHandler } from "react";
+import React from "react";
 import {
   Modal,
   ModalContent,
@@ -14,17 +14,6 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, DeleteIcon } from "@chakra-ui/icons";
 import InputMask from "react-input-mask";
-import educationTypes from "./interfaces/educationTypes";
-
-interface ModalType {
-  data: Array<any>;
-  index: number;
-  open: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  onClickSave: MouseEventHandler<HTMLButtonElement>;
-  onClickDelete: MouseEventHandler<HTMLButtonElement>;
-  onClickClose: MouseEventHandler<HTMLButtonElement>;
-}
 
 const EduModal = ({
   data,
@@ -34,7 +23,7 @@ const EduModal = ({
   onClickSave,
   onClickDelete,
   onClickClose,
-}: ModalType) => {
+}) => {
   return (
     <Modal isCentered isOpen={open} onClose={() => !open} size="xl">
       <ModalOverlay />

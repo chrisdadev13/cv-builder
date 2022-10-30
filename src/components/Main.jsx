@@ -2,33 +2,26 @@ import React, { useState } from "react";
 import DataForm from "./data/DataForm";
 import LeftBar from "./LeftBar";
 import Template from "./Template";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { Remarkable } from "remarkable";
 import { Box, Button } from "@chakra-ui/react";
 import { DownloadIcon } from "@chakra-ui/icons";
-interface StateProps {
-  personal: object;
-  experience: Array<any>;
-  education: Array<any>;
-  skills: object;
-  certificates: Array<string>;
-}
 
 const Main = () => {
-  const [cvData, setCvData] = useState<StateProps>({
+  const [cvData, setCvData] = useState({
     personal: {
-      firstName: "",
-      lastName: "",
-      subtitle: "",
-      address1: "",
-      address2: "",
-      city: "",
-      pinCode: "",
-      phoneNumber: "",
-      emailAddress: "",
-      website: "",
-      summary: "",
+      firstName: "Alexis",
+      lastName: "Jones",
+      subtitle: "Full-Stack Developer",
+      address1: "Ollenhauer Str. 51",
+      address2: "Baden-Württemberg",
+      city: "Stuttgart",
+      pinCode: "70376",
+      phoneNumber: "(800)-1200-3820",
+      emailAddress: "alexis.jones@gmail.com",
+      website: "alexisjones.com",
+      summary:
+        "I am a creative frontend developer offering 4+ years of experience providing high-impact web solutions for diverse industry organizations. Skilled in designing, developing and testing multiple web-based applications incorporating a range of technologies. Aspiring to combine broad background with strong technical skills to excel as a frontend web developer.",
     },
     experience: [
       {
@@ -75,15 +68,15 @@ const Main = () => {
 
   const md = new Remarkable();
 
-  const getMarkupSupport = (data: string) => {
+  const getMarkupSupport = (data) => {
     return { __html: md.render(data) };
   };
 
-  const handlePersonalData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePersonalData = (event) => {
     let name = event.target.name;
     let value = event.target.value;
 
-    setCvData((prev: any) => ({
+    setCvData((prev) => ({
       ...prev,
       personal: {
         ...prev.personal,
@@ -93,8 +86,8 @@ const Main = () => {
   };
 
   const addExperienceField = () => {
-    if (cvData.experience.length < 5) {
-      setCvData((prev: any) => ({
+    if (cvData.experience.length < 3) {
+      setCvData((prev) => ({
         ...prev,
         experience: [
           ...prev.experience,
@@ -122,7 +115,7 @@ const Main = () => {
     }
   };
 
-  const editExperienceField = (index: number) => {
+  const editExperienceField = (index) => {
     setExpCounter(index);
     setExpModal(true);
   };
@@ -138,10 +131,7 @@ const Main = () => {
     setExpCounter(expFieldCounter - 1);
   };
 
-  const handleExperienceData = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
+  const handleExperienceData = (event, index) => {
     let name = event.target.name;
     let value = event.target.value;
 
@@ -158,7 +148,7 @@ const Main = () => {
 
   const addEducationField = () => {
     if (cvData.education.length < 3) {
-      setCvData((prev: any) => ({
+      setCvData((prev) => ({
         ...prev,
         education: [
           ...prev.education,
@@ -187,7 +177,7 @@ const Main = () => {
     }
   };
 
-  const editEducationField = (index: number) => {
+  const editEducationField = (index) => {
     setEduCounter(index);
     setEduModal(true);
   };
@@ -203,10 +193,7 @@ const Main = () => {
     setEduCounter(eduFieldCounter - 1);
   };
 
-  const handleEducationData = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
+  const handleEducationData = (event, index) => {
     let name = event.target.name;
     let value = event.target.value;
 
@@ -259,7 +246,7 @@ const Main = () => {
       />
       <div
         style={{
-          marginTop: "61px",
+          marginTop: "10px",
           marginLeft: "50px",
           marginRight: "50px",
           boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.05)",

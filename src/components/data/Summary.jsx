@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
 import {
   Container,
   Box,
@@ -9,14 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
 
-interface SummaryTypes {
-  personal: {
-    summary: string;
-  };
-  onChange: ChangeEventHandler<HTMLTextAreaElement>;
-}
-
-const Summary = ({ personal, onChange }: SummaryTypes) => {
+const Summary = ({ personal, onChange }) => {
   const summaryHelp = () => {
     return (
       <Container w="70">

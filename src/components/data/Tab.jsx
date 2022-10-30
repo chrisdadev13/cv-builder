@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import React from "react";
 import InputMask from "react-input-mask";
 import {
   Container,
@@ -6,21 +6,14 @@ import {
   Flex,
   Spacer,
   Input,
-  Textarea,
   Heading,
   Text,
   Divider,
   Tooltip,
 } from "@chakra-ui/react";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
-import PersonalTypes from "../utils/interfaces/personalTypes";
 
-interface TabTypes {
-  personal: PersonalTypes;
-  onChange: ChangeEventHandler<HTMLElement>;
-}
-
-const Tab = ({ personal, onChange }: TabTypes) => {
+const Tab = ({ personal, onChange }) => {
   return (
     <Container w="full" textTransform="uppercase" color="#718096" fontSize="sm">
       <Heading

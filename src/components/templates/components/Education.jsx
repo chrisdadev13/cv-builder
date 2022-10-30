@@ -7,8 +7,8 @@ const Education = ({ education, markUpSupport }) => {
     <Box color="black" textAlign="center" mt="5" w="100%">
       <Heading fontSize="xs">Education</Heading>
       <Box my="2">
-        {education.map((item) => (
-          <Box>
+        {education.map((item, index) => (
+          <Box key={index}>
             <Text fontSize="10px" fontWeight="bold">
               {item.university}
             </Text>

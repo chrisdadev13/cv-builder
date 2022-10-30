@@ -67,12 +67,6 @@ const LeftBar = () => {
         <Link href="#school">
           <SchoolIcon />
         </Link>
-        <Link>
-          <BadgeIcon />
-        </Link>
-        <Link>
-          <WorkspacePremiumIcon />
-        </Link>
       </Box>
       <Box>
         <QuestionOutlineIcon />
