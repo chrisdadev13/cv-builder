@@ -5,9 +5,8 @@ import Template from "./Template";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { Remarkable } from "remarkable";
-import { Box } from "@chakra-ui/react";
-import { height } from "@mui/system";
-
+import { Box, Button } from "@chakra-ui/react";
+import { DownloadIcon } from "@chakra-ui/icons";
 interface StateProps {
   personal: object;
   experience: Array<any>;
@@ -231,7 +230,14 @@ const Main = () => {
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
       <LeftBar />
       <DataForm
         cv={cvData}
@@ -255,15 +261,20 @@ const Main = () => {
         style={{
           marginTop: "61px",
           marginLeft: "50px",
+          marginRight: "50px",
           boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.05)",
           width: "634px",
           height: "898px",
           paddingLeft: "15px",
+          background: "white",
         }}
       >
         <Template cv={cvData} markUp={getMarkupSupport} />
       </div>
-      <button onClick={downloadPdf}>Testeo</button>
+      <Button onClick={downloadPdf}>
+        <DownloadIcon />
+        Download
+      </Button>
     </div>
   );
 };

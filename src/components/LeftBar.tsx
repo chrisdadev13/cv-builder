@@ -34,6 +34,7 @@ const LeftBar = () => {
   return (
     <Container
       w="75px"
+      h="100vh"
       bg={bg}
       zIndex={5}
       display="flex"

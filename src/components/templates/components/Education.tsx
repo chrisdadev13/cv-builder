@@ -4,7 +4,7 @@ import { Remarkable } from "remarkable";
 
 const Education = ({ education, markUpSupport }) => {
   return (
-    <Box textAlign="center" mt="5" w="100%">
+    <Box color="black" textAlign="center" mt="5" w="100%">
       <Heading fontSize="xs">Education</Heading>
       <Box my="2">
         {education.map((item) => (

@@ -4,7 +4,7 @@ import { Remarkable } from "remarkable";
 
 const Experience = ({ experience, markUpSupport }) => {
   return (
-    <Box textAlign="center" w="100%">
+    <Box color="black" textAlign="center" w="100%">
       <Heading fontSize="xs">Work Experience</Heading>
       <Box>
         {experience.map((item) => (
