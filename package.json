@@ -2,7 +2,7 @@
   "name": "cv-builder",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://chrisdadev13.github.io/cv-builder"
+  "homepage":"https://chrisdadev13.github.io/cv-builder",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.11",
     "@chakra-ui/react": "^2.3.6",
