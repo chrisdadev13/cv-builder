@@ -29,7 +29,7 @@ Navigate to [localhost:8080](http://localhost:8080).
 
 ---
 
-## I build this game with
+## I build this project with
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [React](https://es.reactjs.org/)
